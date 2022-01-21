@@ -1,6 +1,11 @@
+
+# Everyday Rails - RSpecによるRailsテスト入門の写経
+
+この本の写経です。
+
 [![RSpec](https://github.com/JunichiIto/everydayrails-rspec-jp-2022/actions/workflows/rspec.yml/badge.svg)](https://github.com/JunichiIto/everydayrails-rspec-jp-2022/actions/workflows/rspec.yml)
 
-# *Everyday Rails Testing with RSpec* sample application (2022 Japanese edition)
+##  *Everyday Rails Testing with RSpec* sample application (2022 Japanese edition)
 
 Sample Rails application for *[Everyday Rails Testing with RSpec](https://leanpub.com/everydayrailsrspec): A
 Practical Approach to Test-driven Development* by Aaron Sumner. This
