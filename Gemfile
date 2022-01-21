@@ -68,6 +68,9 @@ group :development do
   # gem "spring"
 
   gem 'faker', require: false # for sample data in development
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 end
 
 group :test do
