@@ -45,3 +45,6 @@ Metrics/BlockLength:
 Naming/FileName:
   Exclude:
     - 'Gemfile'
+
+RSpec/ExampleLength:
+  Enabled: false
