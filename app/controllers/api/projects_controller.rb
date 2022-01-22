@@ -1,6 +1,5 @@
 module Api
   class ProjectsController < ApplicationController
-
     prepend_before_action :authenticate_user_from_token!
 
     def index
@@ -31,7 +30,7 @@ module Api
       if user && Devise.secure_compare(user.authentication_token, params[:user_token])
         sign_in user, store: true
       else
-        render json: { status: "auth failed" }
+        render json: { status: 'auth failed' }
         false
       end
     end
