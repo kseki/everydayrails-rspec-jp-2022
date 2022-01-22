@@ -1,4 +1,4 @@
-Rails.application.configure do |config|
+Rails.application.config do |config|
   config.generators do |g|
     g.test_framework :rspec,
                      fixtures: false,

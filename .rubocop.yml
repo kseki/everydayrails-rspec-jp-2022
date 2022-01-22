@@ -34,6 +34,10 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/**/*'
 
+Lint/UselessAssignment:
+  Exclude:
+    - 'spec/**/*'
+
 Metrics/BlockLength:
   CountComments: false
   Exclude:
@@ -45,3 +49,9 @@ Metrics/BlockLength:
 Naming/FileName:
   Exclude:
     - 'Gemfile'
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
