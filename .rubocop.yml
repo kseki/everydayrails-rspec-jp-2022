@@ -34,6 +34,10 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/**/*'
 
+Lint/UnlessAssignment:
+  Exclude:
+    - 'spec/**/*'
+
 Metrics/BlockLength:
   CountComments: false
   Exclude:
