@@ -34,7 +34,7 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/**/*'
 
-Lint/UnlessAssignment:
+Lint/UselessAssignment:
   Exclude:
     - 'spec/**/*'
 
