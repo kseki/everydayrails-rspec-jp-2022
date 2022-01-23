@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
+  # 締切日が過ぎていれば遅延していること
+  it 'is late when the due date is past today' do
+    project = FactoryBot.create(:project, :due_yesterday)
+    expect(project).to be_late
+  end
+
+  # 締切日が今日ならスケジュールどおりであること
+  it 'is no time when the due date is today' do
+    project = FactoryBot.create(:project, :due_today)
+    expect(project).not_to be_late
+  end
+
+  # 締切日が未来ならスケジュールどおりであること
+  it 'is no time when the due date is feature' do
+    project = FactoryBot.create(:project, :due_tomorrow)
+    expect(project).not_to be_late
+  end
+
   # ユーザー単位では重複したプロジェクトを許可しないこと
   it 'dose not allow duplicate project names per user' do
     user = User.create(
