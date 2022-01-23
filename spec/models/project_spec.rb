@@ -27,12 +27,7 @@ RSpec.describe Project, type: :model do
 
   # ユーザー単位では重複したプロジェクトを許可しないこと
   it 'dose not allow duplicate project names per user' do
-    user = User.create(
-      first_name: 'Joe',
-      last_name: 'Tester',
-      email: 'tester@example.com',
-      password: 'dottle-nouveau-pavilion-tight-furze'
-    )
+    user = FactoryBot.create(:user)
 
     user.projects.create(
       name: 'Test Project'
@@ -48,23 +43,13 @@ RSpec.describe Project, type: :model do
 
   # 二人のユーザーが同じ名前を使うことは許可すること
   it 'allows two users to share a project name' do
-    user = User.create(
-      first_name: 'Joe',
-      last_name: 'Tester',
-      email: 'joetester@example.com',
-      password: 'dottle-nouveau-pavilion-tight-furze'
-    )
+    user = FactoryBot.create(:user, email: 'joetester@example.com')
 
     user.projects.create(
       name: 'Test Project'
     )
 
-    other_user = User.create(
-      first_name: 'Jane',
-      last_name: 'Tester',
-      email: 'janetester@example.com',
-      password: 'dottle-nouveau-pavilion-tight-furze'
-    )
+    other_user = FactoryBot.create(:user,email: 'janetester@example.com')
 
     other_project = other_user.projects.create(
       name: 'Test Project'
