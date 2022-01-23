@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
+  # たくさんのメモが付いていること
+  it 'can hav many notes' do
+    project = FactoryBot.create(:project, :with_notes)
+    expect(project.notes.length).to eq 5
+  end
+
   # 締切日が過ぎていれば遅延していること
   it 'is late when the due date is past today' do
     project = FactoryBot.create(:project, :due_yesterday)
