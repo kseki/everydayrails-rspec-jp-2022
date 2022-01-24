@@ -72,6 +72,36 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
+  describe '#new' do
+    context 'as an authenticated user' do
+      before do
+        @user = FactoryBot.create(:user)
+        @project = FactoryBot.create(:project)
+      end
+
+      it 'responds successfully' do
+        sign_in @user
+        get :new, params: { id: @project.id }
+      end
+    end
+
+    # 認可されてないユーザとして
+    context 'as an unauthorized user' do
+      before do
+        @user = FactoryBot.create(:user)
+        other_user = FactoryBot.create(:user)
+        @project = FactoryBot.create(:project, owner: other_user)
+      end
+
+      # ダッシュボードにリダイレクトすること
+      it 'redirects to the dashbaord' do
+        sign_in @user
+        get :show, params: { id: @project.id }
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
+
   describe '#create' do
     context 'as an authenticated user' do
       before do
@@ -110,6 +140,36 @@ RSpec.describe ProjectsController, type: :controller do
         project_params = FactoryBot.attributes_for(:project)
         post :create, params: { project: project_params }
         expect(response).to redirect_to '/users/sign_in'
+      end
+    end
+  end
+
+  describe '#edit' do
+    context 'as an authenticated user' do
+      before do
+        @user = FactoryBot.create(:user)
+        @project = FactoryBot.create(:project)
+      end
+
+      it 'responds successfully' do
+        sign_in @user
+        get :new, params: { id: @project.id }
+      end
+    end
+
+    # 認可されてないユーザとして
+    context 'as an unauthorized user' do
+      before do
+        @user = FactoryBot.create(:user)
+        other_user = FactoryBot.create(:user)
+        @project = FactoryBot.create(:project, owner: other_user)
+      end
+
+      # ダッシュボードにリダイレクトすること
+      it 'redirects to the dashbaord' do
+        sign_in @user
+        get :show, params: { id: @project.id }
+        expect(response).to redirect_to root_path
       end
     end
   end
