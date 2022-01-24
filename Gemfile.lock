@@ -1,18 +1,4 @@
 GIT
-  remote: https://github.com/teamcapybara/capybara.git
-  revision: a958240ef44b44ca90be8e7b8fbcba8511a6e262
-  specs:
-    capybara (3.36.0)
-      addressable
-      matrix
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      regexp_parser (>= 1.5, < 3.0)
-      xpath (~> 3.2)
-
-GIT
   remote: https://github.com/vcr/vcr.git
   revision: 90ea3ea462384dd5335167a27fe47404623036d4
   specs:
@@ -96,6 +82,15 @@ GEM
     bootsnap (1.9.3)
       msgpack (~> 1.0)
     builder (3.2.4)
+    capybara (3.36.0)
+      addressable
+      matrix
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (>= 1.5, < 3.0)
+      xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crack (0.4.5)
@@ -312,7 +307,7 @@ PLATFORMS
 DEPENDENCIES
   activestorage-validator
   bootsnap
-  capybara!
+  capybara
   cssbundling-rails
   debug
   devise
