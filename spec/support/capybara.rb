@@ -7,3 +7,5 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 end
+
+Capybara.default_max_wait_time = 15
