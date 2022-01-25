@@ -21,4 +21,10 @@ RSpec.describe "Projects", type: :system do
       click_button 'Create Project'
     }.to change(user.projects, :count).by(1)
   end
+
+  scenario 'guest adds a project' do
+    visit projects_path
+    save_and_open_page
+    click_link 'New Project'
+  end
 end
