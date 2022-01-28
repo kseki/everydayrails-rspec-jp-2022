@@ -3,12 +3,9 @@ require 'rails_helper'
 RSpec.describe "Projects", type: :system do
   scenario 'user creates a new project' do
     user = FactoryBot.create(:user)
+    sign_in user
 
     visit root_path
-    click_link 'Sign in'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
 
     expect {
       click_link 'New Project'
