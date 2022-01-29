@@ -1,32 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Note, type: :model do
-  # ファクトリで関連するデータを生成する
-  it 'generates associated data from a factory' do
-    note = FactoryBot.create(:note)
-    puts "This note's project is #{note.project.inspect}"
-    puts "This note's user is #{note.user.inspect}"
-  end
-
-  before do
-    @user = User.create(
-      first_name: 'Joe',
-      last_name: 'Tester',
-      email: 'tester@example.com',
-      password: 'dottle-nouveau-pavilion-tight-furze'
-    )
-
-    @project = @user.projects.create(
-      name: 'Test Project'
-    )
-  end
+  let(:user) { FactoryBot.create(:user) }
+  let(:project) { FactoryBot.create(:project, owner: user) }
 
   # ユーザー、プロジェクト、メッセージがあれば有効な状態であること
   it 'is valid with a user, project, and message' do
     note = described_class.new(
       message: 'This is a sample note.',
-      user: @user,
-      project: @project
+      user: user,
+      project: project
     )
 
     expect(note).to be_valid
@@ -41,18 +24,22 @@ RSpec.describe Note, type: :model do
 
   # 文字列に一致するメッセージを検索する
   describe 'search message for a term' do
-    before do
-      @note1 = @project.notes.create(
+    let!(:note1) do
+      project.notes.create(
         message: 'This is the first note.',
-        user: @user
+        user: user
       )
-      @note2 = @project.notes.create(
+    end
+    let!(:note2) do
+      project.notes.create(
         message: 'This is the second note.',
-        user: @user
+        user: user
       )
-      @note3 = @project.notes.create(
+    end
+    let!(:note3) do
+      project.notes.create(
         message: 'First, preheat the oven.',
-        user: @user
+        user: user
       )
     end
 
@@ -60,7 +47,7 @@ RSpec.describe Note, type: :model do
     context 'when a match is found' do
       # 検索文字列に一致するメモを返すこと
       it 'returns notes that match the search term' do
-        expect(described_class.search('first')).to include(@note1, @note3)
+        expect(described_class.search('first')).to include(note1, note3)
       end
     end
 
