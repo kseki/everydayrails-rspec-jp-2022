@@ -65,4 +65,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include RequesSpecHelper, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
+
+  config.after(:suite) do
+    FileUtils.rm_rf("#{Rails.root}/tmp/storage")
+  end
 end
