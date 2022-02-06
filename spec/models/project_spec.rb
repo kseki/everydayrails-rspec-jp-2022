@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_uniqueness_of(:name).scoped_to(:user_id) }
+  it { is_expected.to belong_to :owner }
+  it { is_expected.to have_many(:notes).dependent(:destroy) }
+  it { is_expected.to have_many(:tasks).dependent(:destroy) }
+
   # たくさんのメモが付いていること
   it 'can hav many notes' do
     project = FactoryBot.create(:project, :with_notes)
