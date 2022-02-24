@@ -21,7 +21,7 @@ RSpec.describe "Projects", type: :system do
     end
   end
 
-  scenario 'user completes a project', focus: true do
+  scenario 'user completes a project' do
     user = FactoryBot.create(:user)
     project = FactoryBot.create(:project, owner: user)
     sign_in user

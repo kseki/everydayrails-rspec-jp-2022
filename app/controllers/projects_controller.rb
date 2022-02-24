@@ -57,8 +57,11 @@ class ProjectsController < ApplicationController
   end
 
   def complete
-    @project.update(completed: true)
-    redirect_to @project, notice: 'Congratulations, this project is completed!'
+    if @project.update(completed: true)
+      redirect_to @project, notice: 'Congratulations, this project is completed!'
+    else
+      redirect_to @project, alert: 'Unable to complete project.'
+    end
   end
 
   private
