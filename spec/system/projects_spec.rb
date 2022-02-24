@@ -21,7 +21,7 @@ RSpec.describe "Projects", type: :system do
     end
   end
 
-  scenario 'user completes a project' do
+  scenario 'user completes a project', focus: true do
     user = FactoryBot.create(:user)
     project = FactoryBot.create(:project, owner: user)
     sign_in user
@@ -32,6 +32,7 @@ RSpec.describe "Projects", type: :system do
 
     expect(project.reload.completed?).to be true
     expect(page).to have_content 'Congratulations, this project is completed!'
+    expect(page).to have_content 'Completed'
     expect(page).to_not have_button 'Complete'
   end
 end
